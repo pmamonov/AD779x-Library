@@ -69,6 +69,7 @@
  */
 #define AD7792_PARTID 0x0A
 #define AD7793_PARTID 0x0B
+#define AD7794_PARTID 0x0F
 
 /**
  * @brief Status register bit mask
@@ -339,7 +340,8 @@ typedef enum
 {
 	adNone,
 	ad7792,
-	ad7793
+	ad7793,
+	ad7794,
 } tAD779X_Model;
 
 /**

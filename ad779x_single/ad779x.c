@@ -56,6 +56,7 @@ void AD779X_Init()
 			}
 			break;
 			
+			case ad7794:
 			case ad7793:
 			{
 				ADCDevice.OfReg.u32 = AD779X_OFFSET_RESET_24;
@@ -181,6 +182,7 @@ unsigned short AD779X_HWDetect()
 	{
 		case AD7792_PARTID: ADCDevice.Model = ad7792; break;
 		case AD7793_PARTID: ADCDevice.Model = ad7793; break;
+		case AD7794_PARTID: ADCDevice.Model = ad7794; break;
 		
 		default: ADCDevice.Model = adNone; break;
 	}
@@ -554,7 +556,8 @@ unsigned long AD779X_ReadDataSample24()
 	/* send cmd: read DATA register */
 	ADCDevice.TxByte(AD779X_RDR_DATA);
 	
-	if (ADCDevice.Model == ad7793)
+	if (ADCDevice.Model == ad7793 ||
+	    ADCDevice.Model == ad7794)
 		m_data[2] = ADCDevice.RxByte();
 	
 	/* get value */
@@ -570,6 +573,7 @@ unsigned long AD779X_ReadDataSample24()
 			m_data_sample = (((unsigned long)((m_data[1] << 8)| m_data[0])) << 8);
 			break;
 		
+		case ad7794:
 		case ad7793:
 			m_data_sample = ((((unsigned long)((m_data[2] << 8)| m_data[1])) << 8) | m_data[0]);
 			break;
