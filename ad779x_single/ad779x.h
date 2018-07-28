@@ -391,6 +391,7 @@ typedef struct
 	tAD779X_RDYState RDYState;
 	tAD779X_TxByte TxByte;
 	tAD779X_RxByte RxByte;
+	int dbg;
 } tAD779X_Device;
 
 extern tAD779X_Device ADCDevice;

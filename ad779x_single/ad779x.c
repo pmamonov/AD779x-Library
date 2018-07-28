@@ -177,7 +177,7 @@ unsigned short AD779X_HWDetect()
 	
 	/* inactive cs line */
 	ADCDevice.CSControl(cssDisable);
-	
+	ADCDevice.dbg = m_adc_model;
 	switch (m_adc_model & 0xF)
 	{
 		case AD7792_PARTID: ADCDevice.Model = ad7792; break;
@@ -210,7 +210,9 @@ unsigned char AD779X_GetStatus()
 	
 	/* inactive cs line */
 	ADCDevice.CSControl(cssDisable);
-	
+
+	ADCDevice.dbg = m_adc_status;
+
 	return m_adc_status;
 }
 
